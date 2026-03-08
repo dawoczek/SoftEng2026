@@ -11,7 +11,7 @@ using namespace std;
 template<class T>
 class Hexagon : public Shape2D<T> {
   public:
-    inline ShapeResultData<T> compute();
+    inline ShapeResult<T> compute();
 
     inline string print();
 
