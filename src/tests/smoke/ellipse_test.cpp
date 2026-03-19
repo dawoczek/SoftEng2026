@@ -12,10 +12,10 @@ TEST(test_ellipse, AreaHappyPath)
 
     ASSERT_TRUE(param.set_attrib(ShapeParamIndex::PARAM_RADIUS, 2.f));
     ASSERT_TRUE(param.set_attrib(ShapeParamIndex::PARAM_RADIUS_2, 3.f));
-    
-    // UWAGA: Zakładam, że tak nazywa się enum dla Elipsy. 
+
+    // UWAGA: Zakładam, że tak nazywa się enum dla Elipsy.
     // Jeśli w pliku ShapeType.h jest inaczej, popraw to!
-    param.type = ShapeType::PT_ELLIPSE; 
+    param.type = ShapeType::PT_ELLIPSE;
     ASSERT_TRUE(param.validate());
 
     auto shape =
@@ -43,9 +43,9 @@ TEST(test_ellipse, ZeroRadius)
 
     ShapeResult<float> data = shape->compute();
     float area = data.get_attrib(ShapeResultIndex::RESULT_AREA);
-    
+
     // Jeśli promień to 0, pole musi być 0
-    ASSERT_EQ(area, 0.f); 
+    ASSERT_EQ(area, 0.f);
 }
 
 // 3. DANE NIEPOPRAWNE: Ujemny promień
@@ -62,8 +62,9 @@ TEST(test_ellipse, NegativeRadius)
 
     ShapeResult<float> data = shape->compute();
     float area = data.get_attrib(ShapeResultIndex::RESULT_AREA);
-    
-    // Zgodnie z kodem znajomej, spodziewamy się że program zablokuje to i zwróci 0
+
+    // Zgodnie z kodem znajomej, spodziewamy się że program zablokuje to i
+    // zwróci 0
     ASSERT_EQ(area, 0.f);
 }
 
@@ -85,7 +86,8 @@ TEST(test_ellipse, MaxFloat)
 
     ShapeResult<float> data = shape->compute();
     float area = data.get_attrib(ShapeResultIndex::RESULT_AREA);
-    
-    // Wzór wyrzuci wynik poza skalę, sprawdzamy czy program łapie nieskończoność
+
+    // Wzór wyrzuci wynik poza skalę, sprawdzamy czy program łapie
+    // nieskończoność
     ASSERT_TRUE(std::isinf(area) || std::isfinite(area));
 }
